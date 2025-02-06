@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Playerctl Web Interface</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Media Player Control</h1>
+        <!-- <div id="status">Status: Unknown</div> -->
+        <div class="controls">
+            <p class="grayscale">
+            <div class="clickable-div" onclick="control('play')">Play</div>
+            <div class="clickable-div" onclick="control('pause')">Pause</div>
+            <div class="clickable-div" onclick="controlWithParameter('seek', 'offset', '10+')">Seek +</div>
+            <div class="clickable-div" onclick="controlWithParameter('seek', 'offset', '10-')">Seek -</div>
+            <div class="clickable-div" onclick="control('next')">Next</div>
+            <div class="clickable-div" onclick="control('previous')">Prev</div>
+            <div class="clickable-div" onclick="control('volume_up')">Volume +</div>
+            <div class="clickable-div" onclick="control('volume_down')">Volume -</div>
+            <div class="clickable-div" onclick="control('mute')">Mute</div>
+        </p>
+        </div>
+    </div>
+    <script>
+        function control(action) {
+            fetch(`/${action}`)
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('status').innerText = `Status: ${data.status}`;
+                });
+        }
+        function controlWithParameter(action, parameter, value) {
+            const value_url_encoded = encodeURIComponent(value);
+            fetch(`/${action}?${parameter}=${value_url_encoded}`)
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('status').innerText = `Status: ${data.status}`;
+                });
+        }
+    </script>
+</body>
+</html>

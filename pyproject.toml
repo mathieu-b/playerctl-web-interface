@@ -1,0 +1,11 @@
+[project]
+name = "playerctl-web-interface"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "flask==2.2.2",
+    "requests==2.26.0",
+    "werkzeug==2.2.2",
+]
