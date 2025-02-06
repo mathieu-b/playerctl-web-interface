@@ -14,6 +14,11 @@ This project utilizes Flask to create a simple web server that allows users to p
    ```
 
 2. Install `uv`: https://docs.astral.sh/uv/getting-started/installation/
+3. Install `playerctl`:
+   ```
+   sudo apt install guix
+   guix install playerctl
+   ``` 
 
 
 ## Usage
